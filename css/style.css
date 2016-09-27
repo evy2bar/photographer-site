@@ -226,7 +226,7 @@ header {
 	list-style: none;
 	zoom: 1;
 	z-index: 11;
-	background: #eb5368;
+	background: #30b4c5;
 	margin: 0;
 	text-align: center;
 }
@@ -562,7 +562,7 @@ footer {
 	position: relative;
 	top: 5px;
 }
-.footerpriv {
+.footer-text {
 	margin-top: 21px;
 	margin-right: 66px;
 	text-align: right;
@@ -572,7 +572,15 @@ footer {
 	font-weight: normal;
 	color: #f2eee5;
 }
-.footerpriv a {
+.text-link {
+	color: #30b4c5;
+	text-decoration: none;
+}
+.text-link:hover {
+	color: #30b4c5;
+	text-decoration: underline;
+}
+.footer-text a {
 	font-family: 'Georgia', serif;
 	font-size: 14px;
 	line-height: 22px;
@@ -580,9 +588,9 @@ footer {
 	color: #f2eee5;
 	text-decoration: underline;
 }
-.footerpriv a:hover {
+.footer-text a:hover {
 	text-decoration: none;
-	color: #eb5368;
+	color: #30b4c5;
 }
 /*----- media queries ------*/
 @media (min-width: 1220px) {
@@ -608,12 +616,12 @@ footer {
 		width: 33%;
 		margin-bottom: 20px;
 	}
-	.footerpriv {
+	.footer-text {
 		margin-top: 21px;
 		margin-right: 0;
 		font-size: 14px;
 	}
-	.footerpriv a {
+	.footer-text a {
 		font-size: 14px;
 	}
 	.row_4 {
@@ -666,7 +674,7 @@ footer {
 	.social_icons {
 		display: inline-block;
 	}
-	.footerpriv {
+	.footer-text {
 		margin-top: 0;
 		margin-right: 0;
 		float: none;
@@ -726,4 +734,7 @@ footer {
 		overflow: hidden;
 		margin-top: 20px;
 	}
+}
+.admin-signin {
+	text-align: center;
 }
