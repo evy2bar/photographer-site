@@ -16,15 +16,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--<script src="js/jquery.js"></script>-->
-    <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src="js/superfish.js"></script>
-    <script src="js/jquery.mobilemenu.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.ui.totop.js"></script>
-    <script src="js/jquery.touchSwipe.min.js"></script>
-    <script src="js/jquery.equalheights.js"></script>
+    <script src="js/lib/jquery-migrate-1.2.1.js"></script>
+    <script src="js/lib/superfish.js"></script>
+    <script src="js/lib/jquery.mobilemenu.js"></script>
+    <script src="js/lib/jquery.easing.1.3.js"></script>
+    <script src="js/lib/jquery.ui.totop.js"></script>
+    <script src="js/lib/jquery.touchSwipe.min.js"></script>
+    <script src="js/lib/jquery.equalheights.js"></script>
     <!--[if (gt IE 9)|!(IE)]><!-->
-    <script src="js/jquery.mobile.customized.min.js"></script>
+    <script src="js/lib/jquery.mobile.customized.min.js"></script>
     <!--<![endif]-->
     <!--[if lt IE 9]>
     <div style='text-align:center'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div>
@@ -48,15 +48,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2>This page is for ADMIN only. If you are not ADMIN please return to <a class="text-link" href="home.html">home page</a>.</h2>
-                    <form>
+                    <h2>This page is for ADMINS only. If you are not an ADMIN please return to <a class="text-link" href="home.html">home page</a>.</h2>
+                    <form id="admin-login-form">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            <label for="adminEmail">Email address</label>
+                            <input type="email" class="form-control" id="adminEmail" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" class="form-control" id="adminPassword" placeholder="Password">
                         </div>
                         <button type="submit" class="btn btn-default">Sign in</button>
                     </form>
@@ -75,18 +75,21 @@
         </div>
     </div>
 </footer>
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
 <script>
     // Initialize Firebase
     var config = {
-        apiKey: "AIzaSyCd5_9hkgtBzZR8YPo_VU1X-ZTP-tazrME",
-        authDomain: "photographyapp-9f2bd.firebaseapp.com",
-        databaseURL: "https://photographyapp-9f2bd.firebaseio.com",
-        storageBucket: "",
-        messagingSenderId: "156766096493"
+        apiKey: "AIzaSyDaU_ftP-qd5I_48gBketkwUxTUYtP7as0",
+        authDomain: "photograper-platform.firebaseapp.com",
+        databaseURL: "https://photograper-platform.firebaseio.com",
+        storageBucket: "photograper-platform.appspot.com",
+        messagingSenderId: "88318886498"
     };
     firebase.initializeApp(config);
 </script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/tm-scripts.js"></script>
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/tm-scripts.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>

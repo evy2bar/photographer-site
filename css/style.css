@@ -41,9 +41,28 @@ body {
 }
 
 .row_7 {
-	padding: 30px 0 80px;
-	background: #ffffff;
+	padding: 30px 0 30px;
+	background: #dedede;
 }
+
+.feature-box {
+    width: 100%;
+    height: 23vh;
+    background: white;
+    border-radius: 4px;
+    margin: 15px 0;
+    padding: 20px 30px;
+    text-align: center;
+}
+
+.feature-box a {
+    text-decoration: none;
+}
+
+.feature-box p {
+    margin: 10px 0 30px;
+}
+
 /*------------links headings-----------*/
 p {
 	font-family: 'Arial', sans-serif;
@@ -592,6 +611,66 @@ footer {
 	text-decoration: none;
 	color: #30b4c5;
 }
+
+#admin-login-form, #add-client-form, #edit-client-form {
+	padding: 0 30%;
+}
+
+.gallery-container {
+    width: 100%;
+    margin-top: 35px;
+}
+
+.square-thumbnail {
+    width: 20%;
+    height: 22vh;
+    margin: 10px 0;
+    float: left;
+    border: 1px solid rgba(0, 0, 0, 0.30);
+    font-size: 25px;
+    text-align: center;
+    background-repeat: no-repeat!important;
+    background-size: cover!important;
+    background-position-y: 50%!important;
+}
+
+.progress {
+    margin-top: 20px;
+}
+
+.btn-remove-img {
+    float: right;
+    margin: 10px;
+}
+
+.admin-home-link {
+    float: right;
+    position: relative;
+    bottom: 45px;
+    color: #428bca;
+    font-size: 16px;
+}
+
+.admin-home-link a {
+    margin-left: 5px;
+}
+
+.client-row {
+    padding: 15px 0 15px 15px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.client-row p {
+    margin-bottom: 0;
+}
+
+.remove-client-btn, .photos-client-btn, .edit-client-btn {
+    font-size: 16px;
+    margin: 0 10%;
+    float: right;
+}
+
+
 /*----- media queries ------*/
 @media (min-width: 1220px) {
 	.list3 li figure {

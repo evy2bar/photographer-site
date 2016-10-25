@@ -16,15 +16,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--<script src="js/jquery.js"></script>-->
-    <script src="js/jquery-migrate-1.2.1.js"></script>
-    <script src="js/superfish.js"></script>
-    <script src="js/jquery.mobilemenu.js"></script>
-    <script src="js/jquery.easing.1.3.js"></script>
-    <script src="js/jquery.ui.totop.js"></script>
-    <script src="js/jquery.touchSwipe.min.js"></script>
-    <script src="js/jquery.equalheights.js"></script>
+    <script src="js/lib/jquery-migrate-1.2.1.js"></script>
+    <script src="js/lib/superfish.js"></script>
+    <script src="js/lib/jquery.mobilemenu.js"></script>
+    <script src="js/lib/jquery.easing.1.3.js"></script>
+    <script src="js/lib/jquery.ui.totop.js"></script>
+    <script src="js/lib/jquery.touchSwipe.min.js"></script>
+    <script src="js/lib/jquery.equalheights.js"></script>
     <!--[if (gt IE 9)|!(IE)]><!-->
-    <script src="js/jquery.mobile.customized.min.js"></script>
+    <script src="js/lib/jquery.mobile.customized.min.js"></script>
     <!--<![endif]-->
     <!--[if lt IE 9]>
     <div style='text-align:center'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div>
@@ -46,14 +46,54 @@
     <!--==============================row7=================================-->
     <div class="row_7">
         <div class="container">
-                <div class="row">
-            		<div class="col-lg-8 col-md-8 col-sm-8">
-
-    	           </div>
-            		<div class="col-lg-4 col-md-4 col-sm-4">
-
-    	           </div>
+            <p style="font-size: 20px;color: dimgrey;">Dashboard</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-box">
+                        <img src="img/add-client.png" width="30%">
+                        <p>Add new clients information to your portfolio</p>
+                        <a href="views/add_client.html"><button class="btn btn-block">GO</button></a>
+                    </div>
                 </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-box">
+                        <img src="img/remove-clients.png" width="30%">
+                        <p>Edit and/or remove clients you are not interested in anymore</p>
+                        <a href="views/edit_clients.html"><button class="btn btn-block">GO</button></a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-box">
+                        <img src="img/photo-gallery.png" width="30%">
+                        <p>Change or upload new images to the home page main gallery</p>
+                        <button class="btn btn-block">GO</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-box">
+                        <img src="img/about-me.png" width="30%">
+                        <p>Change your "about me" section picture</p>
+                        <button class="btn btn-block">GO</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-box">
+                        <img src="img/add-client.png" width="30%">
+                        <p>Change or upload new images to the home page photo slider</p>
+                        <button class="btn btn-block">GO</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="feature-box">
+                        <img src="img/logout.png" width="30%">
+                        <p>Close your administrator session and sign out</p>
+                        <button id="logout-btn" class="btn btn-block">SIGN OUT</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -67,18 +107,24 @@
         </div>
     </div>
 </footer>
+
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
 <script>
     // Initialize Firebase
     var config = {
-        apiKey: "AIzaSyCd5_9hkgtBzZR8YPo_VU1X-ZTP-tazrME",
-        authDomain: "photographyapp-9f2bd.firebaseapp.com",
-        databaseURL: "https://photographyapp-9f2bd.firebaseio.com",
-        storageBucket: "",
-        messagingSenderId: "156766096493"
+        apiKey: "AIzaSyDaU_ftP-qd5I_48gBketkwUxTUYtP7as0",
+        authDomain: "photograper-platform.firebaseapp.com",
+        databaseURL: "https://photograper-platform.firebaseio.com",
+        storageBucket: "photograper-platform.appspot.com",
+        messagingSenderId: "88318886498"
     };
     firebase.initializeApp(config);
 </script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/tm-scripts.js"></script>
+
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/lib/tm-scripts.js"></script>
+<script src="js/helpers.js"></script>
+<script src="js/firebaseManager.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
