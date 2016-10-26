@@ -8,11 +8,12 @@
     var gallery = $(".gallery-container");
     var uploadInput = $("#upload-pics-input");
     var uploadButton = $("#upload-pics-btn");
+    var progressBar = $(".progress-bar");
 
     uploadButton.hide();
 
     var clients = [];
-    var imagesGallery = [];
+    var imagesGallery = {};
     var imagesToUpload = [];
     var userIdSelected = "";
 
@@ -157,9 +158,10 @@
 
                     var btn = createRemoveButton(index);
                     squareDiv.appendChild(btn);
+                    squareDiv.id = index;
                     parent.append(squareDiv);
 
-                    imagesGallery.push(squareDiv);
+                    imagesGallery[index] = squareDiv;
                 };
             })(i);
             reader.readAsDataURL(files[i]);
@@ -180,8 +182,8 @@
 
     function removeImageFromDOM(index) {
         var elem = imagesGallery[index];
-        console.log(elem.parentNode);
         elem.parentNode.removeChild(elem);
+        delete imagesGallery[index];
     }
 
     uploadInput.click(function (e) {
@@ -197,23 +199,36 @@
 
     uploadButton.click(function() {
         var uploadTasks = FirebaseManager.uploadPictures(imagesToUpload, userIdSelected);
-
+        var totalPercentage = uploadTasks.length * 100;
+        var currentProgress = 0, realPercentage = 0;
+        var progressContainer = $("#progress-container");
+        progressContainer.show();
         for (var i = 0; i < uploadTasks.length; ++i) {
             (function(index) {
                 // Listen for state changes, errors, and completion of the upload.
                 uploadTasks[i].on(firebase.storage.TaskEvent.STATE_CHANGED, function (snapshot) {
                     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
                     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log('Upload #' + index + ' is ' + progress + '% done');
+                    //console.log('Upload #' + index + ' is ' + progress + '% done');
 
-                    $(".progress-bar").text();
+                    if (progress == 100) {
+                        currentProgress += progress;
+                        realPercentage = (currentProgress * 100) / totalPercentage;
+
+                        progressBar.width(realPercentage + '%');
+                        progressBar.text(realPercentage + "% uploaded");
+                    }
+
+                    if (realPercentage === 100) {
+                        progressContainer.hide();
+                    }
 
                     switch (snapshot.state) {
                         case firebase.storage.TaskState.PAUSED: // or 'paused'
                             console.log('Upload is paused');
                             break;
                         case firebase.storage.TaskState.RUNNING: // or 'running'
-                            console.log('Upload is running');
+                            //console.log('Upload is running');
                             break;
                         default:
                             break;
@@ -233,7 +248,7 @@
                 }, function () {
                     // Upload completed successfully, now we can get the download URL
                     var downloadURL = uploadTasks[index].snapshot.downloadURL;
-                    console.log(downloadURL);
+                    //console.log(downloadURL);
                 });
             }(i));
         }

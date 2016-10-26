@@ -624,7 +624,7 @@ footer {
 .square-thumbnail {
     width: 20%;
     height: 22vh;
-    margin: 10px 0;
+    margin: 15px 0;
     float: left;
     border: 1px solid rgba(0, 0, 0, 0.30);
     font-size: 25px;
@@ -640,7 +640,7 @@ footer {
 
 .btn-remove-img {
     float: right;
-    margin: 10px;
+    margin: 5px;
 }
 
 .admin-home-link {
@@ -668,6 +668,10 @@ footer {
     font-size: 16px;
     margin: 0 10%;
     float: right;
+}
+
+#upload-pics-btn {
+	float: right;
 }
 
 
