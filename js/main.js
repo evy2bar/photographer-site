@@ -123,7 +123,7 @@ function main() {
     $('#add-client-form').submit(function(e) {
         e.preventDefault();
         $('#add-client-btn').prop('disabled', true);
-        var client = { name: $('#clientName').val(), email: $('#clientEmail').val(), phone: $('#clientPhone').val() };
+        var client = { name: $('#clientName').val(), email: $('#clientEmail').val(), phone: $('#clientPhone').val(), photos: [] };
         if (Helpers.hasEmptyFields(client.name, client.email, client.phone)) {
             this.showAlertMessage("There are empty fields!", 2500);
             return;

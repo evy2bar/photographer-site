@@ -4,6 +4,8 @@
 
 var FirebaseManager = {
 
+    // Create a storage reference from our storage service
+    storageRef: firebase.storage().ref(),
 
     getListOfClients: function() {
         return firebase.database().ref('/clients/').once('value');
@@ -22,7 +24,8 @@ var FirebaseManager = {
             uid: key,
             name: client.name,
             email: client.email,
-            phone: client.phone
+            phone: client.phone,
+            photos: client.photos
         };
 
         return firebase.database().ref().update(updates);
@@ -34,7 +37,8 @@ var FirebaseManager = {
             uid: client.uid,
             name: client.name,
             email: client.email,
-            phone: client.phone
+            phone: client.phone,
+            photos: client.photos
         };
         return firebase.database().ref().update(updates);
     },
@@ -44,21 +48,39 @@ var FirebaseManager = {
     },
 
     uploadPictures: function(files, clientId) {
-        // Get a reference to the storage service, which is used to create references in your storage bucket
-        var storage = firebase.storage();
-
-        // Create a storage reference from our storage service
-        var storageRef = storage.ref();
-
         // Create the file metadata
         var metadata = {
             contentType: 'image/jpeg'
         };
         var uploadTasks = [];
 
-        for (var i = 0; i < files.length; ++i) {
-            uploadTasks.push(storageRef.child('clients-pics/' + clientId + '/' + files[i].name).put(files[i], metadata));
+        for (var k in files) {
+            if (files.hasOwnProperty(k)) {
+                uploadTasks.push(this.storageRef.child('clients-pics/' + clientId + '/' + files[k].name).put(files[k], metadata));
+            }
         }
         return uploadTasks;
+    },
+
+    downloadClientPictures: function(clientId, photos) {
+        var promises = [];
+        for (var i = 0; i < photos.length; ++i) {
+            var starsRef = this.storageRef.child('clients-pics/' + clientId + '/' + photos[i]);
+            promises.push(starsRef.getDownloadURL());
+        }
+        return promises;
+    },
+
+    deleteUserPhotos: function(clientId, photos) {
+        // Create a reference to the file to delete
+        for (var i = 0; i < photos.length; ++i) {
+            var desertRef = this.storageRef.child('clients-pics/' + clientId + '/' + photos[i]);
+            desertRef.delete().then(function() {
+                // File deleted successfully
+                console.log("success");
+            }).catch(function(error) {
+                console.log(error);
+            });
+        }
     }
 };

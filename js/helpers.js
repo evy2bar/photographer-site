@@ -84,5 +84,15 @@ var Helpers = {
             return [phone.substr(0, 3), phone.substring(3, 6), phone.substr(6)].join("-");
         }
         return phone;
+    },
+
+    parseDataFromFirebase: function(object) {
+        var array = [];
+        for (var k in object) {
+            if (object.hasOwnProperty(k)) {
+                array.push(object[k]);
+            }
+        }
+        return array;
     }
 };
