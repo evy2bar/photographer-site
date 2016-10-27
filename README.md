@@ -1,1 +1,1 @@
-# photographer-site
+# Web platform that allows photographers to manage their business relationship with clients. It supports photo uploads for specific clients, manage clients basic information, and provide a unique code for clients to check and review your work.
