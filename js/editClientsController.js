@@ -44,7 +44,6 @@
                     row.appendChild(colIcons);
                     table.appendChild(row);
                 }
-                loadingIcon.hide();
                 clientRows = table.children;
             }
             else {
@@ -55,7 +54,9 @@
                 col.innerHTML = "There are no clients to show";
                 row.appendChild(col);
                 table.appendChild(row);
+
             }
+            loadingIcon.hide();
         });
     }
 

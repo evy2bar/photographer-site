@@ -28,9 +28,9 @@
     <!--<![endif]-->
     <!--[if lt IE 9]>
     <div style='text-align:center'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div>
-    <link rel="stylesheet" href="assets/tm/css/tm_docs.css" type="text/css" media="screen">
-    <script src="assets/assets/js/html5shiv.js"></script>
-    <script src="assets/assets/js/respond.min.js"></script>
+    <link rel="stylesheet" href="css/tm_docs.css" type="text/css" media="screen">
+    <script src="js/lib/html5shiv.js"></script>
+    <script src="js/lib/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -60,6 +60,9 @@
     <div class="row_7">
         <div class="container">
             <div class="row">
+                <div class="alert alert-danger text-center" role="alert" id="alert-msg" style="display: none"></div>
+            </div>
+            <div class="row">
                 <div class="col-sm-12">
                     <h2>Please enter your unique&nbsp;code</h2>
                 </div>
@@ -74,7 +77,6 @@
             <div class="row text-center">
                 <img class="photos-spinner" src="img/default.gif" style="display: none;">
             </div>
-
 
             <div class="gallery-container" style="display: none;">
 
@@ -119,6 +121,7 @@
 </script>
 <script src="js/lib/bootstrap.min.js"></script>
 <script src="js/lib/tm-scripts.js"></script>
+<script src="js/helpers.js"></script>
 <script src="js/firebaseManager.js"></script>
 <script src="js/clientController.js"></script>
 

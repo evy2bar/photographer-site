@@ -3,6 +3,13 @@
  */
 
 var Helpers = {
+    alertType: {
+        success: "success",
+        info: "info",
+        warning: "warning",
+        danger: "danger"
+    },
+
     /**
      * Converts a date string in a human readable format (MMM DD, YYYY)
      * @param date
@@ -99,5 +106,38 @@ var Helpers = {
     getBackgroundUrlFromDiv: function(img) {
         var style = img.currentStyle || window.getComputedStyle(img, false)
         return style.backgroundImage.slice(4, -1);
+    },
+
+    showAlertMessage: function(msg, type, time) {
+        var alertMsg = $("#alert-msg");
+        if (alertMsg) {
+            alertMsg.removeClass();
+            switch (type) {
+                case "success": {
+                    alertMsg[0].className = "alert alert-success text-center";
+                    break;
+                }
+                case "info": {
+                    alertMsg[0].className = "alert alert-info text-center";
+                    break;
+                }
+                case "warning": {
+                    alertMsg[0].className = "alert alert-warning text-center";
+                    break;
+                }
+                case "danger": {
+                    alertMsg[0].className = "alert alert-danger text-center";
+                    break;
+                }
+                default:
+                    break;
+            }
+            alertMsg.html(msg);
+            alertMsg.show();
+            time = time ? time : 1000000000;
+            setTimeout(function() {
+                alertMsg.hide();
+            }, time);
+        }
     }
 };

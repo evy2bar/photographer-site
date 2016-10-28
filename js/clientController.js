@@ -10,8 +10,17 @@
         var uid = $("#client-code-input").val();
         FirebaseManager.getCLientPhotos(uid).then(function(snapshot) {
             snapshot = snapshot.val();
-            var promises = FirebaseManager.downloadClientPictures(uid, snapshot.photos);
-            buildPhotoGallery(promises);
+            if (snapshot) {
+                var promises = FirebaseManager.downloadClientPictures(uid, snapshot.photos);
+                buildPhotoGallery(promises);
+            }
+            else {
+                Helpers.showAlertMessage(
+                    "<strong>Invalid unique code!</strong> Please verify your code and try submitting again.",
+                    Helpers.alertType.danger,
+                    4000
+                );
+            }
         });
     });
 
@@ -23,7 +32,7 @@
             (function (index) {
                 promises[i].then(function (url) {
                     var squareDiv = document.createElement("div");
-                    squareDiv.className = "square-thumbnail";
+                    squareDiv.className = "square-thumbnail client-photo";
                     squareDiv.style.backgroundImage = "url(" + url + ")";
 
                     //var btn = createRemoveButton(index);
