@@ -59,18 +59,26 @@
     <!--==============================row7=================================-->
     <div class="row_7">
         <div class="container">
-                <div class="row">
-            		<div class="col-sm-12">
-                        <h2>Please enter your unique&nbsp;code</h2>
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <input class="form-control" type="text" placeholder="Unique code" id="example-text-input">
-                    </div>
-                    <div class="col-sm-6 col-xs-12">
-                        <button type="submit" class="btn btn-primary client-btn">I want my amazing pics!</button>
-                    </div>
-
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Please enter your unique&nbsp;code</h2>
                 </div>
+                <div class="col-sm-6 col-xs-12">
+                    <input class="form-control" type="text" placeholder="Unique code" id="client-code-input">
+                </div>
+                <div class="col-sm-6 col-xs-12">
+                    <button type="button" class="btn btn-primary client-btn">I want my amazing pics!</button>
+                </div>
+            </div>
+
+            <div class="row text-center">
+                <img class="photos-spinner" src="img/default.gif" style="display: none;">
+            </div>
+
+
+            <div class="gallery-container" style="display: none;">
+
+            </div>
         </div>
     </div>
 </div>
@@ -97,18 +105,22 @@
         </div>
     </div>
 </footer>
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
 <script>
     // Initialize Firebase
     var config = {
-        apiKey: "AIzaSyCd5_9hkgtBzZR8YPo_VU1X-ZTP-tazrME",
-        authDomain: "photographyapp-9f2bd.firebaseapp.com",
-        databaseURL: "https://photographyapp-9f2bd.firebaseio.com",
-        storageBucket: "",
-        messagingSenderId: "156766096493"
+        apiKey: "AIzaSyDaU_ftP-qd5I_48gBketkwUxTUYtP7as0",
+        authDomain: "photograper-platform.firebaseapp.com",
+        databaseURL: "https://photograper-platform.firebaseio.com",
+        storageBucket: "photograper-platform.appspot.com",
+        messagingSenderId: "88318886498"
     };
     firebase.initializeApp(config);
 </script>
 <script src="js/lib/bootstrap.min.js"></script>
 <script src="js/lib/tm-scripts.js"></script>
+<script src="js/firebaseManager.js"></script>
+<script src="js/clientController.js"></script>
+
 </body>
 </html>

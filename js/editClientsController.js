@@ -9,6 +9,8 @@
     var uploadInput = $("#upload-pics-input");
     var uploadButton = $("#upload-pics-btn");
     var progressBar = $(".progress-bar");
+    var loadingIcon = $("#loading-icon");
+    var clientRows = [];
 
     uploadButton.hide();
 
@@ -42,6 +44,8 @@
                     row.appendChild(colIcons);
                     table.appendChild(row);
                 }
+                loadingIcon.hide();
+                clientRows = table.children;
             }
             else {
                 row = document.createElement("div");
@@ -91,13 +95,17 @@
         photosButton.appendChild(photoIcon);
 
         editButton.onclick = function() {
+            selectRow(uid);
             $("#clientUid").val(clients[index].uid);
             $('#clientName').val(clients[index].name);
             $('#clientEmail').val(clients[index].email);
             $('#clientPhone').val(clients[index].phone);
+            gallery.hide();
             editForm.show();
         };
         trashButton.onclick = function() {
+            selectRow(uid);
+            gallery.hide();
             var ans = confirm("Are you sure you want to delete this user? Be aware that all photos associated with it will be deleted as well.");
             if (ans) {
                 FirebaseManager.removeClient(uid).then(function() {
@@ -112,6 +120,8 @@
             }
         };
         photosButton.onclick = function() {
+            selectRow(uid);
+            cleanGalleryDOM();
             gallery.show();
             userIdSelected = uid;
             indexClientSelected = index;
@@ -125,6 +135,17 @@
         col.appendChild(trashButton);
         col.appendChild(editButton);
         return col;
+    }
+
+    function cleanGalleryDOM() {
+        var elem = document.querySelector(".gallery-container");
+        for (var k in imagesGallery) {
+            if (imagesGallery.hasOwnProperty(k)) {
+                elem.removeChild(imagesGallery[k]);
+                delete imagesGallery[k];
+            }
+        }
+        imagesToUpload = {};
     }
 
     function removeClientRowFromDOM(uid) {
@@ -162,8 +183,9 @@
         });
     });
 
+    // Creates selected photos to be uploaded and display them in the gallery
     function createGalleryGrid(files) {
-        var parent = $(".gallery-container");
+        var parent = gallery;
         for (var i = 0; i < files.length; ++i) {
             var reader = new FileReader();
             (function (index) {
@@ -198,12 +220,35 @@
     }
 
     function removeImageFromDOM(index) {
+        var ans = false;
         var elem = imagesGallery[index];
-        elem.parentNode.removeChild(elem);
-        delete imagesGallery[index];
-        delete imagesToUpload[index];
-        if (Object.keys(imagesGallery).length === 0) {
-            uploadButton.hide();
+        // Remove selected image from Firebase Storage
+        if (!imagesToUpload[index]) {
+            ans = confirm("Are you sure you want to delete this photo? If you proceed it'll be permanently removed from the server!");
+            if (ans) {
+                var url = Helpers.getBackgroundUrlFromDiv(imagesGallery[index]).split("%2F")[2];
+                url = url.substring(0, url.indexOf('?'));
+                FirebaseManager.deleteClientPhoto(userIdSelected, url).then(function() {
+                    elem.parentNode.removeChild(elem);
+                    delete imagesGallery[index];
+                    if (Object.keys(imagesGallery).length === 0) {
+                        uploadButton.hide();
+                    }
+                }).catch(function(error) {
+                    console.log(error);
+                });
+            }
+        }
+        else {
+            ans = confirm("Are you sure you want to delete this photo? If you proceed it won't be uploaded!");
+            if (ans) {
+                elem.parentNode.removeChild(elem);
+                delete imagesGallery[index];
+                delete imagesToUpload[index];
+                if (Object.keys(imagesGallery).length === 0) {
+                    uploadButton.hide();
+                }
+            }
         }
     }
 
@@ -333,6 +378,13 @@
                 });
             }(i));
         }
+    }
+
+    function selectRow(uid) {
+        for (var i = 0, len = clientRows.length; i < len; ++i) {
+            clientRows[i].className = "row client-row";
+        }
+        $("#" + uid).addClass("selected-client-row");
     }
 
     buildListOfClients();

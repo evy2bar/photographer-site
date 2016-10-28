@@ -94,5 +94,10 @@ var Helpers = {
             }
         }
         return array;
+    },
+
+    getBackgroundUrlFromDiv: function(img) {
+        var style = img.currentStyle || window.getComputedStyle(img, false)
+        return style.backgroundImage.slice(4, -1);
     }
 };

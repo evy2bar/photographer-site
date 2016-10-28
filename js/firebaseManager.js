@@ -11,6 +11,10 @@ var FirebaseManager = {
         return firebase.database().ref('/clients/').once('value');
     },
 
+    getCLientPhotos: function(uid) {
+        return firebase.database().ref('/clients/' + uid).once('value');
+    },
+
     removeClient: function(uid) {
         var updates = {};
         updates['/clients/' + uid] = null;
@@ -82,5 +86,10 @@ var FirebaseManager = {
                 console.log(error);
             });
         }
+    },
+
+    deleteClientPhoto: function(clientId, photoId) {
+        var desertRef = this.storageRef.child('clients-pics/' + clientId + '/' + photoId);
+        return desertRef.delete();
     }
 };
